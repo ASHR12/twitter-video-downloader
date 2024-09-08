@@ -1,9 +1,9 @@
 import Image from 'next/image'
-import { TwitterVideoDownloader } from '@/components/twitter-video-downloader'
+import { VideoDownloader } from '@/components/video-downloader'
 export default function Home() {
   return (
     <>
-      <TwitterVideoDownloader />
+      <VideoDownloader />
     </>
   )
 }
