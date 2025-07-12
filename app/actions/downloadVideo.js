@@ -95,3 +95,33 @@ async function getInstagramVideo(url) {
     throw new Error('Failed to fetch Instagram video')
   }
 }
+
+async function getYoutubeVideo(url) {
+  try {
+    const ytdl = await import('ytdl-core')
+    const info = await ytdl.default.getInfo(url)
+    
+    if (!info || !info.formats) {
+      throw new Error('No video found or video unavailable')
+    }
+
+    // Find the best quality video format
+    const videoFormats = info.formats.filter(format => 
+      format.hasVideo && format.hasAudio && format.container === 'mp4'
+    )
+    
+    if (videoFormats.length === 0) {
+      throw new Error('No suitable video format found')
+    }
+
+    // Sort by quality and get the best one
+    const bestFormat = videoFormats.sort((a, b) => 
+      parseInt(b.qualityLabel?.replace('p', '') || 0) - parseInt(a.qualityLabel?.replace('p', '') || 0)
+    )[0]
+
+    return bestFormat.url
+  } catch (error) {
+    console.error('YouTube video fetch error:', error)
+    throw new Error('Failed to fetch YouTube video: ' + error.message)
+  }
+}
