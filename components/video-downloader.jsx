@@ -121,17 +121,43 @@ export function VideoDownloader() {
           transition={{ duration: 1.5 }}
         >
           <form action={formAction} className='space-y-6'>
-            <div className='relative'>
-              <select
-                name='platform'
-                value={platform}
-                onChange={(e) => setPlatform(e.target.value)}
-                className='block p-3 w-full rounded-md border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 transition-all duration-200'
-              >
-                <option value='twitter'>X/Twitter</option>
-                <option value='facebook'>Facebook</option>
-                <option value='instagram'>Instagram</option>
-              </select>
+            <div className='flex justify-around items-center p-3 w-full rounded-md border-gray-600 bg-gray-700 transition-all duration-200'>
+              <label htmlFor='twitter' className='flex items-center text-white cursor-pointer'>
+                <input
+                  type='radio'
+                  id='twitter'
+                  name='platform'
+                  value='twitter'
+                  checked={platform === 'twitter'}
+                  onChange={(e) => setPlatform(e.target.value)}
+                  className='appearance-none rounded-full border border-gray-600 checked:bg-blue-600 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-700 h-4 w-4'
+                />
+                <span className='ml-2'>X/Twitter</span>
+              </label>
+              <label htmlFor='facebook' className='flex items-center text-white cursor-pointer'>
+                <input
+                  type='radio'
+                  id='facebook'
+                  name='platform'
+                  value='facebook'
+                  checked={platform === 'facebook'}
+                  onChange={(e) => setPlatform(e.target.value)}
+                  className='appearance-none rounded-full border border-gray-600 checked:bg-blue-600 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-700 h-4 w-4'
+                />
+                <span className='ml-2'>Facebook</span>
+              </label>
+              <label htmlFor='instagram' className='flex items-center text-white cursor-pointer'>
+                <input
+                  type='radio'
+                  id='instagram'
+                  name='platform'
+                  value='instagram'
+                  checked={platform === 'instagram'}
+                  onChange={(e) => setPlatform(e.target.value)}
+                  className='appearance-none rounded-full border border-gray-600 checked:bg-blue-600 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-700 h-4 w-4'
+                />
+                <span className='ml-2'>Instagram</span>
+              </label>
             </div>
             <div className='relative'>
               <Input
